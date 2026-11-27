@@ -1,4 +1,4 @@
-# Snakemake FastQC Pipeline by PK
+# Snakemake FastQC Pipeline
 
 A reproducible bioinformatics workflow for sequencing read quality
 control using Snakemake, FastQC, and MultiQC.
