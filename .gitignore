@@ -1,0 +1,28 @@
+# Snakemake internal files
+.snakemake/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Sequencing data
+*.fastq
+*.fastq.gz
+*.fq
+*.fq.gz
+
+# Pipeline outputs
+/data/
+/results/
+/logs/
+/benchmarks/
+
+# Local configuration
+config/local.yaml
+
+# Software environments
+.conda/
+.env/
+
+# VS Code local settings
+.vscode/
