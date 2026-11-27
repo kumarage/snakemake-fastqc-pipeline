@@ -1,0 +1,11 @@
+data_dir: "/mnt/g/bioinformatics/snakemake-fastqc/data"
+
+results_dir: "/mnt/g/bioinformatics/snakemake-fastqc/results"
+
+logs_dir: "/mnt/g/bioinformatics/snakemake-fastqc/logs"
+
+samples:
+  - sample1_R1
+  - sample1_R2
+
+threads: 2

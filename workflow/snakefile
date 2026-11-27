@@ -1,0 +1,48 @@
+configfile: "config/config.yaml"
+
+DATA_DIR = config["data_dir"]
+RESULTS_DIR = config["results_dir"]
+LOGS_DIR = config["logs_dir"]
+SAMPLES = config["samples"]
+
+rule all:
+    input:
+        expand(
+            RESULTS_DIR + "/fastqc/{sample}_fastqc.html",
+            sample=SAMPLES
+        ),
+        expand(
+            RESULTS_DIR + "/fastqc/{sample}_fastqc.zip",
+            sample=SAMPLES
+        )
+
+
+rule fastqc:
+    input:
+        DATA_DIR + "/{sample}.fastq.gz"
+
+    output:
+        html=RESULTS_DIR + "/fastqc/{sample}_fastqc.html",
+        zip=RESULTS_DIR + "/fastqc/{sample}_fastqc.zip"
+
+    log:
+        LOGS_DIR + "/fastqc/{sample}.log"
+
+    params:
+        outdir=RESULTS_DIR + "/fastqc"
+
+    threads:
+        config["threads"]
+
+    conda:
+        "envs/fastqc.yaml"
+
+    shell:
+        """
+        mkdir -p {params.outdir:q}
+
+        fastqc \
+            --threads {threads} \
+            --outdir {params.outdir:q} \
+            {input:q} > {log:q} 2>&1
+        """
